@@ -1,0 +1,7 @@
+2025-11-23 18:52:24,733 Connected: 127.0.0.1:59102
+2025-11-23 18:52:24,733 Registered Sensor01 (temperature)
+2025-11-23 18:52:24,733 Sent to Sensor01: SET_INTERVAL 3
+2025-11-23 18:52:25,739 ACK from Sensor01: ACK Command Executed
+2025-11-23 18:52:25,739 Sent to Sensor01: ACTIVATE_ALARM
+2025-11-23 18:52:26,744 ACK from Sensor01: ACK Command Executed
+2025-11-23 18:52:26,745 Disconnected: ('127.0.0.1', 59102)

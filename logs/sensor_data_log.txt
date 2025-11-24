@@ -1,0 +1,10 @@
+2025-11-23 18:52:55,900 Sensor01 temperature 24.2 SEQ=1
+2025-11-23 18:52:56,905 Sensor01 temperature 24.4 SEQ=2
+2025-11-23 18:52:57,911 Sensor01 temperature 24.6 SEQ=3
+2025-11-23 18:52:58,916 Sensor01 temperature 24.8 SEQ=4
+2025-11-23 18:52:59,922 Sensor01 temperature 25.0 SEQ=5
+2025-11-23 18:53:00,927 Sensor01 temperature 25.2 SEQ=6
+2025-11-23 18:53:01,929 Sensor01 temperature 25.4 SEQ=7
+2025-11-23 18:53:02,929 Sensor01 temperature 25.6 SEQ=8
+2025-11-23 18:53:03,935 Sensor01 temperature 25.8 SEQ=9
+2025-11-23 18:53:04,939 Sensor01 temperature 26.0 SEQ=10
