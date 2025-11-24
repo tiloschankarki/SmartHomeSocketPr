@@ -8,15 +8,17 @@ DEVICE = "Sensor01"
 TYPE = "temperature"
 
 def start():
+    # connect to hub
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     try:
         sock.connect((HOST, PORT))
         print(f"{DEVICE} connected to hub")
-
+        # send registration
         reg = f"DEVICE {DEVICE} TYPE {TYPE}"
         sock.sendall(reg.encode())
 
+        # wait for commands
         while True:
             data = sock.recv(1024)
             if not data:
@@ -25,6 +27,7 @@ def start():
             cmd = data.decode().strip()
             print(f"{DEVICE} received: {cmd}")
 
+            # send ACK
             time.sleep(1)
             sock.sendall(b"ACK Command Executed")
 

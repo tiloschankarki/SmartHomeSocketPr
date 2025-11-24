@@ -5,6 +5,7 @@ import logging
 HOST = "127.0.0.1"
 PORT = 5050
 
+# log TCP activity
 logging.basicConfig(
     filename="logs/server_log.txt",
     level=logging.INFO,
@@ -15,16 +16,19 @@ devices = {}
 lock = threading.Lock()
 
 def parse_registration(msg):
+    # extract device name + type
     parts = msg.strip().split()
     if len(parts) == 4 and parts[0] == "DEVICE" and parts[2] == "TYPE":
         return parts[1], parts[3]
     return None, None
 
 def handle_client(conn, addr):
+    # each device handled in its own thread
     ip, port = addr
     logging.info(f"Connected: {ip}:{port}")
 
     try:
+        # receive registration
         reg = conn.recv(1024)
         if not reg:
             return
@@ -33,17 +37,19 @@ def handle_client(conn, addr):
         device, dtype = parse_registration(reg)
         if not device:
             return
-
+        # store device info
         with lock:
             devices[device] = {"type": dtype, "addr": addr}
 
         logging.info(f"Registered {device} ({dtype})")
 
+        # example commands
         commands = ["SET_INTERVAL 3", "ACTIVATE_ALARM"]
         for c in commands:
             conn.sendall(c.encode())
             logging.info(f"Sent to {device}: {c}")
 
+            # wait for ACK
             ack = conn.recv(1024)
             if not ack:
                 break
@@ -52,10 +58,12 @@ def handle_client(conn, addr):
     except:
         pass
     finally:
+        # close connection
         conn.close()
         logging.info(f"Disconnected: {addr}")
 
 def start():
+    # start TCP hub
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.bind((HOST, PORT))
     server.listen()
